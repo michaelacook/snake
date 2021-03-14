@@ -1,3 +1,8 @@
-class Segment {}
+class Segment {
+  constructor(x, y) {
+    this._x = x
+    this._y = y
+  }
+}
 
 module.exports = Segment
