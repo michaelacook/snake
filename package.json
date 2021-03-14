@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A simple Snake game that runs in the terminal.",
   "main": "index.js",
+  "bin": {
+    "terminal-snake": "./index.js"
+  },
   "scripts": {
     "test": "mocha test ./test/index.js",
     "pretty": "prettier --write --no-semi ."
