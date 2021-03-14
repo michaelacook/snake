@@ -1,8 +1,7 @@
-#!/usr/bin/env node
+const game = new Game(50, 25)
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
 
-const game = new (require("./src/Game.js"))(55, 25)
+ctx.fillStyle = "black"
+ctx.fillRect(20, 20, 400, 400)
 
-game.createApple()
-game.createSnake()
-game.createGameArea()
-game.printGameArea()

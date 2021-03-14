@@ -1,15 +1,3 @@
-const Apple = require("./Apple.js")
-const Snake = require("./Snake.js")
-const colors = require("colors")
-
-colors.setTheme({
-  gameAreaBackground: "bgBlack",
-  snakeBackground: "bgCyan",
-  appleBackground: "bgRed",
-  text: "green",
-  bold: "bold",
-})
-
 class Game {
   constructor(width, height) {
     this._width = width
@@ -39,12 +27,12 @@ class Game {
   createGameArea() {
     const outer = []
     for (let i = 0; i < this._height; i++) {
-      const inner = new Array(this._width).fill(" ".gameAreaBackground)
+      const inner = new Array(this._width).fill(" ")
       outer.push(inner)
     }
-    outer[this.apple.yCoordinate][this.apple.xCoordinate] = " ".appleBackground
+    outer[this.apple.yCoordinate][this.apple.xCoordinate] = " "
     for (let segment of this.snake.body) {
-      outer[segment._y][segment._x] = " ".snakeBackground
+      outer[segment._y][segment._x] = " "
     }
     this.gameArea = outer
   }
@@ -53,12 +41,9 @@ class Game {
    * Print the game area to the console
    */
   printGameArea() {
-    console.clear()
     console.log(`Score: ${this.score}`.text.bold)
     this.gameArea.forEach((row) => {
       console.log(row.join(""))
     })
   }
 }
-
-module.exports = Game
