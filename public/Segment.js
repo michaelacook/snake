@@ -5,3 +5,4 @@ class Segment {
   }
 }
 
+export default Segment

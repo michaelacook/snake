@@ -1,3 +1,6 @@
+import Apple from "./Apple.js"
+import Snake from "./Snake.js"
+
 class Game {
   constructor(width, height) {
     this._width = width
@@ -47,3 +50,5 @@ class Game {
     })
   }
 }
+
+export default Game
