@@ -43,12 +43,10 @@ class Snake {
     this.body.shift()
   }
 
-  animate() {
-    setInterval(() => {
-      this.clear()
-      this.shift()
-      this.draw()
-    }, 150)
+  move() {
+    this.clear()
+    this.shift()
+    this.draw()
   }
 }
 

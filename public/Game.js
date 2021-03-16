@@ -13,16 +13,7 @@ class Game {
    * Generates an Apple object with random coordinates
    */
   createApple() {
-    const apple = new Apple(425, 150)
-    this.apple = apple
-  }
-
-  drawApple() {
-    this.ctx.beginPath()
-    this.ctx.arc(this.apple.x, this.apple.y, 5.7, 0, 2 * Math.PI)
-    this.ctx.fillStyle = "crimson"
-    this.ctx.fill()
-    this.ctx.stroke()
+    this.apple = new Apple(425, 150, this.ctx)
   }
 
   /**
@@ -40,13 +31,25 @@ class Game {
     this.ctx.fillRect(0, 0, 550, 550)
   }
 
+  /**
+   * Move snake according to specified direction on an interval
+   */
+  animate() {
+    setInterval(() => {
+      this.snake.move()
+    }, 140)
+  }
+
+  /**
+   * Initialze game properties and begin animation
+   */
   run() {
     this.drawGameArea()
     this.createApple()
-    this.drawApple()
+    this.apple.draw()
     this.createSnake()
     this.snake.draw()
-    this.snake.animate()
+    this.animate()
   }
 }
 
