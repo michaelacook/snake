@@ -2,9 +2,10 @@ import Apple from "./Apple.js"
 import Snake from "./Snake.js"
 
 class Game {
-  constructor(width, height) {
+  constructor(width, height, canvasContext) {
     this._width = width
     this._height = height
+    this.ctx = canvasContext
     this.score = 0
   }
 
@@ -12,42 +13,40 @@ class Game {
    * Generates an Apple object with random coordinates
    */
   createApple() {
-    const apple = new Apple(40, 5)
+    const apple = new Apple(425, 150)
     this.apple = apple
+  }
+
+  drawApple() {
+    this.ctx.beginPath()
+    this.ctx.arc(this.apple.x, this.apple.y, 5.7, 0, 2 * Math.PI)
+    this.ctx.fillStyle = "crimson"
+    this.ctx.fill()
+    this.ctx.stroke()
   }
 
   /**
    * Create and add a snake property to the instance
    */
   createSnake() {
-    this.snake = new Snake(9, 16)
+    this.snake = new Snake(100, 500, this.ctx)
   }
 
   /**
-   * Generate a game area array of strings
-   * Add an initial apple to the game area
+   * Draw the game area on the canvas
    */
-  createGameArea() {
-    const outer = []
-    for (let i = 0; i < this._height; i++) {
-      const inner = new Array(this._width).fill(" ")
-      outer.push(inner)
-    }
-    outer[this.apple.yCoordinate][this.apple.xCoordinate] = " "
-    for (let segment of this.snake.body) {
-      outer[segment._y][segment._x] = " "
-    }
-    this.gameArea = outer
+  drawGameArea() {
+    this.ctx.fillStyle = "black"
+    this.ctx.fillRect(0, 0, 550, 550)
   }
 
-  /**
-   * Print the game area to the console
-   */
-  printGameArea() {
-    console.log(`Score: ${this.score}`.text.bold)
-    this.gameArea.forEach((row) => {
-      console.log(row.join(""))
-    })
+  run() {
+    this.drawGameArea()
+    this.createApple()
+    this.drawApple()
+    this.createSnake()
+    this.snake.draw()
+    this.snake.animate()
   }
 }
 

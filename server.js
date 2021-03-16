@@ -7,7 +7,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 app.use(express.static("public"))
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/index.html")
 })
 
