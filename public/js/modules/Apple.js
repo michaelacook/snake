@@ -6,11 +6,14 @@ class Apple {
   }
 
   draw() {
-    this.ctx.beginPath()
-    this.ctx.arc(this.x, this.y, 5.7, 0, 2 * Math.PI)
     this.ctx.fillStyle = "crimson"
-    this.ctx.fill()
-    this.ctx.stroke()
+    this.ctx.fillRect(this.x, this.y, 10, 10)
+  }
+
+  clear() {
+    this.ctx.clearRect(this.x, this.y, 10, 10)
+    this.ctx.fillStyle = "green"
+    this.ctx.fillRect(this.x, this.y, 10, 10)
   }
 }
 

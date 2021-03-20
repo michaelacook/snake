@@ -1,1 +1,1 @@
-web: npm run with-modules
+web: npm start
