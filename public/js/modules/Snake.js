@@ -8,7 +8,7 @@ class Snake {
       new Segment(x, y - 20),
       new Segment(x, y - 30),
     ]
-    this.ctx = document.getElementById("canvas")
+    this.ctx = document.getElementById("canvas").getContext("2d")
     this.direction = "right"
   }
 
