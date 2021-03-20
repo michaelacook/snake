@@ -12,6 +12,10 @@
     "pretty": "prettier --write --no-semi .",
     "with-modules": "nodemon --experimental-modules server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michaelacook/snake.git"
+  },
   "keywords": [
     "snake",
     "terminal"
