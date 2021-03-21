@@ -58,10 +58,54 @@ class Game {
   }
 
   /**
+   * Generate a random multiple of ten
+   * Used to create random apple coordinates
+   * @returns {Number}
+   */
+  randomMultipleOfTen() {
+    return Math.round((Math.random() * (this._width - 10 - 10) + 10) / 10) * 10
+  }
+
+  /**
+   * Generate random x and y coordinates that do not overlap with snake body
+   * @returns {Object} random x and y coordinates
+   */
+  generateRandomCoordinates() {
+    let x = this.randomMultipleOfTen()
+    let y = this.randomMultipleOfTen()
+
+    const overlap = (x, y) => {
+      for (let segment of this.snake.body) {
+        if (segment.x === x && segment.y === y) {
+          return true
+        }
+      }
+      return false
+    }
+
+    while (overlap(x, y)) {
+      x = this.randomMultipleOfTen()
+      y = this.randomMultipleOfTen()
+    }
+
+    return { x, y }
+  }
+
+  /**
    * Generates an Apple object with random coordinates
    */
   createApple(x = this._width - 100, y = this._height - 200) {
     this.apple = new Apple(x, y, this.ctx)
+  }
+
+  /**
+   * Get random coordinates, create a new apple and draw it on the canvas
+   */
+  drawRandomApple() {
+    this.apple.clear()
+    const { x, y } = this.generateRandomCoordinates()
+    this.createApple(x, y)
+    this.apple.draw()
   }
 
   /**
@@ -127,13 +171,7 @@ class Game {
   checkForEatApple() {
     const { x, y } = this.snake.body[this.snake.body.length - 1]
     if (x === this.apple.x && y === this.apple.y) {
-      const randomX =
-        Math.round((Math.random() * (this._width - 10 - 10) + 10) / 10) * 10
-      const randomY =
-        Math.round((Math.random() * (this._height - 10 - 10) + 10) / 10) * 10
-      this.apple.clear()
-      this.createApple(randomX, randomY)
-      this.apple.draw()
+      this.drawRandomApple()
       this.snake.addSegment()
       return true
     }
