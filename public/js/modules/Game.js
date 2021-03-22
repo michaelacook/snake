@@ -3,8 +3,8 @@ import Snake from "./Snake.js"
 
 class Game {
   constructor(width, height) {
-    this._width = width
-    this._height = height
+    this.width = width
+    this.height = height
     this.ctx = document.getElementById("canvas").getContext("2d")
     this.scoreDisplay = document.getElementById("score")
     this.score = 0
@@ -63,7 +63,7 @@ class Game {
    * @returns {Number}
    */
   randomMultipleOfTen() {
-    return Math.round((Math.random() * (this._width - 10 - 10) + 10) / 10) * 10
+    return Math.round((Math.random() * (this.width - 10 - 10) + 10) / 10) * 10
   }
 
   /**
@@ -94,7 +94,7 @@ class Game {
   /**
    * Generates an Apple object with random coordinates
    */
-  createApple(x = this._width - 100, y = this._height - 200) {
+  createApple(x = this.width - 100, y = this.height - 200) {
     this.apple = new Apple(x, y)
   }
 
@@ -112,7 +112,7 @@ class Game {
    * Create and add a snake property to the instance
    */
   createSnake() {
-    this.snake = new Snake(this._width - 250, this._height - 200)
+    this.snake = new Snake(this.width - 250, this.height - 200)
   }
 
   /**
@@ -120,14 +120,14 @@ class Game {
    */
   drawGameArea() {
     this.ctx.fillStyle = "black"
-    this.ctx.fillRect(0, 0, this._width, this._height)
+    this.ctx.fillRect(0, 0, this.width, this.height)
   }
 
   /**
    * Clear everything from the game area
    */
   clearGameArea() {
-    this.ctx.clearRect(0, 0, this._width + 50, this._height + 50)
+    this.ctx.clearRect(0, 0, this.width + 50, this.height + 50)
     this.ctx.fillStyle = "black"
     // redraw blank game area with no apple or snake
     this.drawGameArea()
@@ -140,7 +140,7 @@ class Game {
     const length = this.snake.body.length - 1
     const body = this.snake.body
     if (
-      this.snake.checkForWallCollision(this._width, this._height) ||
+      this.snake.checkForWallCollision(this.width, this.height) ||
       this.snake.checkForSelfCollision()
     ) {
       clearInterval(this.intervalID)
