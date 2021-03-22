@@ -4,9 +4,9 @@ class Snake {
   constructor(x, y) {
     this.body = [
       new Segment(x, y),
-      new Segment(x, y - 10),
-      new Segment(x, y - 20),
-      new Segment(x, y - 30),
+      new Segment(x + 10, y),
+      new Segment(x + 20, y),
+      new Segment(x + 30, y),
     ]
     this.ctx = document.getElementById("canvas").getContext("2d")
     this.direction = "right"
@@ -27,7 +27,7 @@ class Snake {
    * Print the snake to the canvas
    */
   draw() {
-    this.body.forEach((segment) => {
+    this.body.forEach((segment, i) => {
       this.ctx.fillStyle = "green"
       this.ctx.fillRect(segment.x, segment.y, 10, 10)
     })
@@ -37,33 +37,53 @@ class Snake {
    * Check if the snake's head came into contact with a body segment
    * @returns {Boolean} true || false
    */
-  checkForCollision() {
+  checkForSelfCollision() {
     const head = this.body[this.body.length - 1]
-    const body = [...this.body]
-    body.pop()
+    const body = this.body
     for (let segment of body) {
-      if (head.x === segment.x && segment.y === head.y) {
-        return true
+      if (body.indexOf(segment) !== body.indexOf(head)) {
+        if (head.x === segment.x && segment.y === head.y) {
+          return true
+        }
       }
     }
     return false
   }
 
   /**
-   * unshift a segment onto the body
+   * Check if snake head goes beyond game area
+   * @param {Number} width - width of game area
+   * @param {Number} height - height of game area
+   * @returns {Boolean} true if collision, else false
+   */
+  checkForWallCollision(width, height) {
+    const head = this.body[this.body.length - 1]
+    if (
+      head.x < 0 ||
+      head.x > width - 10 ||
+      head.y < 0 ||
+      head.y > height - 10
+    ) {
+      return true
+    }
+    return false
+  }
+
+  /**
+   * Unshift a segment onto the body
    * For when an apple is eaten
    */
   addSegment() {
-    const { x, y } = this.body[this.body.length - 1]
+    const { x, y } = this.body[0]
     let nextSegment
     if (this.direction === "up") {
-      nextSegment = new Segment(x, y - 10)
-    } else if (this.direction === "right") {
-      nextSegment = new Segment(x + 10, y)
-    } else if (this.direction === "left") {
-      nextSegment = new Segment(x - 10, y)
-    } else if (this.direction === "down") {
       nextSegment = new Segment(x, y + 10)
+    } else if (this.direction === "right") {
+      nextSegment = new Segment(x - 10, y)
+    } else if (this.direction === "left") {
+      nextSegment = new Segment(x + 10, y)
+    } else if (this.direction === "down") {
+      nextSegment = new Segment(x, y - 10)
     }
     this.body.unshift(nextSegment)
   }

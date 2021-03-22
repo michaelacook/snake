@@ -95,7 +95,7 @@ class Game {
    * Generates an Apple object with random coordinates
    */
   createApple(x = this._width - 100, y = this._height - 200) {
-    this.apple = new Apple(x, y, this.ctx)
+    this.apple = new Apple(x, y)
   }
 
   /**
@@ -112,7 +112,7 @@ class Game {
    * Create and add a snake property to the instance
    */
   createSnake() {
-    this.snake = new Snake(this._width - 250, this._height - 170)
+    this.snake = new Snake(this._width - 250, this._height - 200)
   }
 
   /**
@@ -140,11 +140,8 @@ class Game {
     const length = this.snake.body.length - 1
     const body = this.snake.body
     if (
-      body[length].x < 0 ||
-      body[length].x > this._width - 10 ||
-      body[length].y < 0 ||
-      body[length].y > this._height - 10 ||
-      this.snake.checkForCollision()
+      this.snake.checkForWallCollision(this._width, this._height) ||
+      this.snake.checkForSelfCollision()
     ) {
       clearInterval(this.intervalID)
       this.active = false

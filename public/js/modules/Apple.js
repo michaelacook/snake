@@ -1,15 +1,21 @@
 class Apple {
-  constructor(x, y, canvasContext) {
+  constructor(x, y) {
     this.x = x
     this.y = y
-    this.ctx = canvasContext
+    this.ctx = document.getElementById("canvas").getContext("2d")
   }
 
+  /**
+   * Draw apple to the canvas
+   */
   draw() {
     this.ctx.fillStyle = "crimson"
     this.ctx.fillRect(this.x, this.y, 10, 10)
   }
 
+  /**
+   * Delete apple from the canvas
+   */
   clear() {
     this.ctx.clearRect(this.x, this.y, 10, 10)
     this.ctx.fillStyle = "green"
