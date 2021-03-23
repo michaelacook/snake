@@ -1,5 +1,5 @@
 const { assert } = require("chai")
-const Apple = require("../../src/Apple.js")
+const Apple = require("../../public/js/modules/Apple.js")
 
 module.exports = () => {
   describe("Apple", () => {
