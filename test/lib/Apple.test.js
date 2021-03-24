@@ -1,12 +1,12 @@
-const { assert } = require("chai")
-const Apple = require("../../public/js/modules/Apple.js")
+import { assert } from "chai"
+import Apple from "../../public/js/modules/Apple.js"
 
-module.exports = () => {
+export function test () {
   describe("Apple", () => {
     describe("constructor", () => {
       it("has a type of object on construct", () => {
         const apple = new Apple()
-        assert.typeOf(apple, "object")
+        assert.typeOf(apple, "thing")
       })
     })
   })
