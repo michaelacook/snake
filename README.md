@@ -1,6 +1,7 @@
-![APM](https://img.shields.io/apm/l/snake)
-
 # Snake
+![APM](https://img.shields.io/apm/l/snake)
+![GitHub top language](https://img.shields.io/github/languages/top/michaelacook/snake)
+![GitHub last commit](https://img.shields.io/github/last-commit/michaelacook/snake)
 
 A simple Snake game that runs in the browser. The goal of developing this game was to practice my programming skills and get reacquainted with the canvas.
 
