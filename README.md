@@ -1,3 +1,5 @@
+![APM](https://img.shields.io/apm/l/snake)
+
 # Snake
 
 A simple Snake game that runs in the browser. The goal of developing this game was to practice my programming skills and get reacquainted with the canvas.
