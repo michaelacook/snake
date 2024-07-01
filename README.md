@@ -1,5 +1,4 @@
 # Snake
-![APM](https://img.shields.io/apm/l/snake)
 ![GitHub top language](https://img.shields.io/github/languages/top/michaelacook/snake)
 ![GitHub last commit](https://img.shields.io/github/last-commit/michaelacook/snake)
 
