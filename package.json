@@ -1,7 +1,7 @@
 {
-  "name": "terminal-snake",
+  "name": "classic-snake",
   "version": "1.0.0",
-  "description": "A simple Snake game that runs in the terminal.",
+  "description": "A simple classic Snake game.",
   "main": "index.js",
   "bin": {
     "terminal-snake": "./index.js"
